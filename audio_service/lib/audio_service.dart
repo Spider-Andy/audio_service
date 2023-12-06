@@ -231,6 +231,9 @@ class PlaybackState {
   /// The index of the current item in the queue, if any.
   final int? queueIndex;
 
+  /// The duration of the current item in the queue, if any.
+  final Duration? duration;
+
   /// Creates a [PlaybackState] with given field values, and with [updateTime]
   /// defaulting to [DateTime.now].
   PlaybackState({
@@ -249,6 +252,7 @@ class PlaybackState {
     this.shuffleMode = AudioServiceShuffleMode.none,
     this.captioningEnabled = false,
     this.queueIndex,
+    this.duration,
   })  : assert(androidCompactActionIndices == null ||
             androidCompactActionIndices.length <= 3),
         updateTime = updateTime ?? clock.now();
@@ -362,6 +366,7 @@ abstract class PlaybackStateCopyWith {
     AudioServiceShuffleMode shuffleMode,
     bool captioningEnabled,
     int? queueIndex,
+    Duration? duration,
   });
 }
 
@@ -391,6 +396,7 @@ class _PlaybackStateCopyWith extends PlaybackStateCopyWith {
     Object? shuffleMode = _fakeNull,
     Object? captioningEnabled = _fakeNull,
     Object? queueIndex = _fakeNull,
+    Object? duration = _fakeNull,
   }) =>
       PlaybackState(
         processingState: processingState == _fakeNull
@@ -428,6 +434,8 @@ class _PlaybackStateCopyWith extends PlaybackStateCopyWith {
             : captioningEnabled as bool,
         queueIndex:
             queueIndex == _fakeNull ? value.queueIndex : queueIndex as int?,
+        duration:
+            duration == _fakeNull ? value.duration : duration as Duration?,
       );
 }
 
